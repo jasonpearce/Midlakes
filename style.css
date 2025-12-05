@@ -4,14 +4,14 @@
 
 /* Add white border + rounded corners (optional but looks nice) */
 .lead img {
-    border: 3px solid white;
-    border-radius: 6px;        /* optional: soft corners */
+    border: 1px solid white;
+    border-radius: 2px;        /* optional: soft corners */
     box-sizing: border-box;    /* ensures width=100 still includes border */
 }
 
 /* Add horizontal spacing between the images */
 .lead > div {
-    margin-right: 12px;        /* space between each image column */
+    margin-right: 4px;        /* space between each image column */
 }
 
 .lead > div:last-child {
