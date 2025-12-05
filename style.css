@@ -11,7 +11,7 @@
 
 /* Add horizontal spacing between the images */
 .lead > div {
-    margin-right: 4px;        /* space between each image column */
+    margin-right: 2px;        /* space between each image column */
 }
 
 .lead > div:last-child {
