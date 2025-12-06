@@ -26,126 +26,19 @@
     </header>
 
     <main role="main" class="d-flex flex-column flex-grow-1 align-items-center justify-content-center text-center">
-
-
-
-<div id="panorama"></div>
-<script>
-pannellum.viewer('panorama', {
-    "type": "equirectangular",
-    "panorama": "/images/exterior-pier/ext-pier-04.jpeg",
-    "autoLoad": true,
-    "autoRotate": 3
-});
-</script>
-
-
-
-
-<hr />
-
-<!--        
-      <div id="panorama" hidden class="flex-grow-1"></div>
-      <p class="lead">
-          
-        <span id="select">
-          To start, select an image below
-          <br>
-        </span>
-        <span id="reselect" hidden>
-          Select another image
-        </span>
-
-        <label class="btn btn-sm btn-secondary">
-            <small>Browse <input id="file" type="file" hidden></small>
-        </label>
-       
-      </p>
-
-
-        -->
+    
+        <div id="panorama"></div>
+            <script>
+            pannellum.viewer('panorama', {
+                "type": "equirectangular",
+                "panorama": "/images/exterior-pier/ext-pier-04.jpeg",
+                "autoLoad": true,
+                "autoRotate": 3
+            });
+            </script>
+        
     </main>
 
-
-      <!--
-      
-<h4>Interior Upstairs</h4>
-      
-    <div class="lead d-flex flex-row align-items-center">
-        
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-01.jpeg" width="100" alt="Exterior Deck 1" /></a>
-      </div>
-        
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-02.jpeg" width="100" alt="Exterior Deck 2" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-03.jpeg" width="100" alt="Exterior Deck 3" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-04.jpeg" width="100" alt="Exterior Deck 4" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-05.jpeg" width="100" alt="Exterior Deck 5" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-06.jpeg" width="100" alt="Exterior Deck 6" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-07.jpeg" width="100" alt="Exterior Deck 7" /></a>
-      </div>
-
-     <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-08.jpeg" width="100" alt="Exterior Deck 8" /></a>
-      </div>
-
-     <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-09.jpeg" width="100" alt="Exterior Deck 9" /></a>
-      </div>
-
-     <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/exterior-deck/ext-deck-10.jpeg" width="100" alt="Exterior Deck 10" /></a>
-      </div>
-        
-    </div>
-
-    <script>
-      const panorama = document.getElementById("panorama");
-      const file = document.getElementById("file");
-      function displayPhoto(url, filename) {
-          document.getElementById("filename").textContent = filename;
-          document.getElementById("select").setAttribute('hidden', '');
-          document.getElementById("reselect").removeAttribute('hidden');
-          panorama.removeAttribute('hidden');
-          pannellum.viewer(panorama, {
-              type: "equirectangular",
-              panorama: url,
-              autoLoad: true,
-              autoRotate: -2,
-          });
-      }
-      file.addEventListener("change", function(e) {
-        const file = e.target.files[0];
-        displayPhoto(URL.createObjectURL(file), file.name);
-      });
-      const examples = document.querySelectorAll(".example");
-      examples.forEach(function(el) {
-        el.addEventListener("click", function(e) {
-          e.preventDefault();
-          displayPhoto(e.target.getAttribute('src'), e.target.getAttribute('alt'));
-        });
-      });
-    </script>
-
--->
-
-      
   </div>
 </body>
 </html>
