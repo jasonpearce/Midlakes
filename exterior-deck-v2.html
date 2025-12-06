@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/style.css"/>
     <script type="text/javascript" src="/pannellum.js"></script>
     <style>
-        #panorama { width: 100%; height: 65vh; } /* Adjust height as needed */
+        #panorama { width: 100%; height: 65vh; }
         .thumbnail-row { 
             margin-top: 20px; 
             overflow-x: auto; 
@@ -50,11 +50,9 @@
     </header>
 
     <main role="main" class="d-flex flex-column flex-grow-1">
-      <!-- Panorama viewer – visible immediately -->
       <div id="panorama"></div>
     </main>
       
-    <!-- Thumbnail strip -->
     <div class="thumbnail-row text-center">
       <img src="/images/exterior-deck/ext-deck-01.jpeg" data-scene="1" class="active" alt="Exterior Deck 1">
       <img src="/images/exterior-deck/ext-deck-02.jpeg" data-scene="2" alt="Exterior Deck 2">
@@ -69,53 +67,56 @@
     </div>
 
     <script>
-      // Define all 10 scenes
       const scenes = {
-        "1":  { panorama: "/images/exterior-deck/ext-deck-01.jpeg", title: "Exterior Deck – View 1" },
-        "2":  { panorama: "/images/exterior-deck/ext-deck-02.jpeg", title: "Exterior Deck – View 2" },
-        "3":  { panorama: "/images/exterior-deck/ext-deck-03.jpeg", title: "Exterior Deck – View 3" },
-        "4":  { panorama: "/images/exterior-deck/ext-deck-04.jpeg", title: "Exterior Deck – View 4" },
-        "5":  { panorama: "/images/exterior-deck/ext-deck-05.jpeg", title: "Exterior Deck – View 5" },
-        "6":  { panorama: "/images/exterior-deck/ext-deck-06.jpeg", title: "Exterior Deck – View 6" },
-        "7":  { panorama: "/images/exterior-deck/ext-deck-07.jpeg", title: "Exterior Deck – View 7" },
-        "8":  { panorama: "/images/exterior-deck/ext-deck-08.jpeg", title: "Exterior Deck – View 8" },
-        "9":  { panorama: "/images/exterior-deck/ext-deck-09.jpeg", title: "Exterior Deck – View 9" },
-        "10": { panorama: "/images/exterior-deck/ext-deck-10.jpeg", title: "Exterior Deck – View 10" }
+        "1":  { panorama: "/images/exterior-deck/ext-deck-01.jpeg", title: "Exterior Deck – View 1", hfov: 110 },
+        "2":  { panorama: "/images/exterior-deck/ext-deck-02.jpeg", title: "Exterior Deck – View 2", hfov: 110 },
+        "3":  { panorama: "/images/exterior-deck/ext-deck-03.jpeg", title: "Exterior Deck – View 3", hfov: 110 },
+        "4":  { panorama: "/images/exterior-deck/ext-deck-04.jpeg", title: "Exterior Deck – View 4", hfov: 110 },
+        "5":  { panorama: "/images/exterior-deck/ext-deck-05.jpeg", title: "Exterior Deck – View 5", hfov: 110 },
+        "6":  { panorama: "/images/exterior-deck/ext-deck-06.jpeg", title: "Exterior Deck – View 6", hfov: 110 },
+        "7":  { panorama: "/images/exterior-deck/ext-deck-07.jpeg", title: "Exterior Deck – View 7", hfov: 110 },
+        "8":  { panorama: "/images/exterior-deck/ext-deck-08.jpeg", title: "Exterior Deck – View 8", hfov: 110 },
+        "9":  { panorama: "/images/exterior-deck/ext-deck-09.jpeg", title: "Exterior Deck – View 9", hfov: 110 },
+        "10": { panorama: "/images/exterior-deck/ext-deck-10.jpeg", title: "Exterior Deck – View 10", hfov: 110 }
+        // If one particular photo needs a different zoom, just change its hfov here, e.g. "hfov": 100
       };
 
-      // Initialize viewer with first scene automatically
       const viewer = pannellum.viewer('panorama', {
         "default": {
           "firstScene": "1",
+          "author": "",
           "autoLoad": true,
           "autoRotate": -2,
-          "showControls": true   // optional: hides zoom/fullscreen if you don't want them
+          "hfov": 150,           // Default zoom level (higher = more zoomed out)
+          "minHfov": 60,         // How far user can zoom in
+          "maxHfov": 150,        // How far user can zoom out
+          "pitch": -10,          // Slight downward tilt on load
+          "yaw": 0,
+          "showControls": true
         },
         "scenes": scenes
       });
 
-      // Update title when scene changes
+      // Update title + ensure correct zoom on every scene change
       viewer.on('load', function() {
         const current = viewer.getScene();
         document.getElementById('filename').textContent = scenes[current].title;
+
+        // Respect per-scene hfov if defined, otherwise use default
+        if (scenes[current].hfov) {
+          viewer.setHfov(scenes[current].hfov, true);  // true = animated transition
+        }
       });
 
-      // Thumbnail click → load scene + highlight active thumb
+      // Thumbnail click handler
       document.querySelectorAll('.thumbnail-row img').forEach(thumb => {
         thumb.addEventListener('click', function() {
           const sceneId = this.getAttribute('data-scene');
           viewer.loadScene(sceneId);
 
-          // Update active thumbnail
           document.querySelectorAll('.thumbnail-row img').forEach(t => t.classList.remove('active'));
           this.classList.add('active');
         });
-      });
-
-      // Optional: start with nice initial view (pitch/yaw)
-      viewer.on('load', function() {
-        viewer.setPitch(-10);
-        viewer.setYaw(0);
       });
     </script>
   </div>
