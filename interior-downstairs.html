@@ -8,114 +8,166 @@
     <link rel="stylesheet" href="/pannellum.css"/>
     <link rel="stylesheet" href="/style.css"/>
     <script type="text/javascript" src="/pannellum.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+
+        header {
+            flex-shrink: 0;
+            padding-bottom: 1rem;
+        }
+
+        /* Panorama takes ALL remaining space */
+        #panorama {
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* Thumbnail strip – fixed height, always visible */
+        .thumbnail-row {
+            flex-shrink: 0;
+            padding: 15px 0;
+            overflow-x: auto;
+            white-space: nowrap;
+            background: rgba(0,0,0,0.05);
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .thumbnail-row img {
+            height: 75px;
+            width: auto;
+            max-width: 100px;
+            object-fit: cover;
+            margin: 0 4px;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.25s;
+            opacity: 0.85;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .thumbnail-row img:hover,
+        .thumbnail-row img.active {
+            opacity: 1;
+            transform: scale(1.15);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .main-container { padding: 0.5rem; }
+            header h3, header h4 { font-size: 1.1rem; }
+            #navigation { font-size: 0.85rem; }
+            .thumbnail-row img {
+                height: 70px;
+                margin: 0 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .thumbnail-row img { height: 65px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="masthead d-flex flex-row align-items-center mb-4 text-center">
-      <h3 class="masthead-brand m-0"><a href="/">Midlakes</a></h3>
-      <h4 class="flex-grow-1 m-0" id="filename"></h4>
-    <div id="navigation"> 
+
+<div class="main-container">
+    <header class="masthead d-flex flex-column text-center">
+      <div class="d-flex flex-row align-items-center justify-content-between mb-3">
+        <h3 class="masthead-brand m-0"><a href="/">Midlakes</a></h3>
+        <h4 class="m-0" id="filename">Interior Downstairs – View 1</h4>
+      </div>
+      <div id="navigation" class="small"> 
         <a href="/exterior-deck.html">Exterior Deck</a> | 
         <a href="/exterior-grounds.html">Exterior Grounds</a> | 
         <a href="/exterior-pier.html">Exterior Pier</a> |
         <a href="/interior-upstairs.html">Interior Upstairs</a> | 
         <a href="/interior-main.html">Interior Main</a> | 
         <strong><a href="/interior-downstairs.html">Interior Downstairs</a></strong>
-    </div>
+      </div>
     </header>
 
-    <main role="main" class="d-flex flex-column flex-grow-1 align-items-center justify-content-center text-center">
-      <div id="panorama" hidden class="flex-grow-1"></div>
-      <p class="lead">
-          
-        <span id="select">
-          To start, select an image below
-          <br>
-        </span>
-        <span id="reselect" hidden>
-          Select another image
-        </span>
+    <!-- Panorama fills remaining space -->
+    <div id="panorama"></div>
 
-        <label class="btn btn-sm btn-secondary">
-            <small>Browse <input id="file" type="file" hidden></small>
-        </label>
-       
-      </p>
-    </main>
-
-<h4>Interior Downstairs</h4>
-      
-    <div class="lead d-flex flex-row align-items-center">
-        
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-01.jpeg" width="100" alt="Interior Downstairs 1" /></a>
-      </div>
-        
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-02.jpeg" width="100" alt="Interior Downstairs 2" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-03.jpeg" width="100" alt="Interior Downstairs 3" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-04.jpeg" width="100" alt="Interior Downstairs 4" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-05.jpeg" width="100" alt="Interior Downstairs 5" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-06.jpeg" width="100" alt="Interior Downstairs 6" /></a>
-      </div>
-
-      <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-07.jpeg" width="100" alt="Interior Downstairs 7" /></a>
-      </div>
-
-     <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-08.jpeg" width="100" alt="Interior Downstairs 8" /></a>
-      </div>
-
-     <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-09.jpeg" width="100" alt="Interior Downstairs 9" /></a>
-      </div>
-
-     <div class="d-flex flex-column">
-        <a href="#" class="example"><img src="/images/interior-downstairs/int-downstairs-10.jpeg" width="100" alt="Interior Downstairs 10" /></a>
-      </div>
-        
+    <!-- Thumbnails always visible at bottom -->
+    <div class="thumbnail-row text-center">
+      <img src="/images/interior-downstairs/int-downstairs-01.jpeg" data-scene="1" class="active" alt="View 1">
+      <img src="/images/interior-downstairs/int-downstairs-02.jpeg" data-scene="2" alt="View 2">
+      <img src="/images/interior-downstairs/int-downstairs-03.jpeg" data-scene="3" alt="View 3">
+      <img src="/images/interior-downstairs/int-downstairs-04.jpeg" data-scene="4" alt="View 4">
+      <img src="/images/interior-downstairs/int-downstairs-05.jpeg" data-scene="5" alt="View 5">
+      <img src="/images/interior-downstairs/int-downstairs-06.jpeg" data-scene="6" alt="View 6">
+      <img src="/images/interior-downstairs/int-downstairs-07.jpeg" data-scene="7" alt="View 7">
+      <img src="/images/interior-downstairs/int-downstairs-08.jpeg" data-scene="8" alt="View 8">
+      <img src="/images/interior-downstairs/int-downstairs-09.jpeg" data-scene="9" alt="View 9">
+      <img src="/images/interior-downstairs/int-downstairs-10.jpeg" data-scene="10" alt="View 10">
     </div>
+</div>
 
-    <script>
-      const panorama = document.getElementById("panorama");
-      const file = document.getElementById("file");
-      function displayPhoto(url, filename) {
-          document.getElementById("filename").textContent = filename;
-          document.getElementById("select").setAttribute('hidden', '');
-          document.getElementById("reselect").removeAttribute('hidden');
-          panorama.removeAttribute('hidden');
-          pannellum.viewer(panorama, {
-              type: "equirectangular",
-              panorama: url,
-              autoLoad: true,
-              autoRotate: -2,
-          });
-      }
-      file.addEventListener("change", function(e) {
-        const file = e.target.files[0];
-        displayPhoto(URL.createObjectURL(file), file.name);
-      });
-      const examples = document.querySelectorAll(".example");
-      examples.forEach(function(el) {
-        el.addEventListener("click", function(e) {
-          e.preventDefault();
-          displayPhoto(e.target.getAttribute('src'), e.target.getAttribute('alt'));
-        });
-      });
-    </script>
-  </div>
+<script>
+  const scenes = {
+    "1":  { panorama: "/images/interior-downstairs/int-downstairs-01.jpeg", title: "Interior Downstairs – View 1", hfov: 130 },
+    "2":  { panorama: "/images/interior-downstairs/int-downstairs-02.jpeg", title: "Interior Downstairs – View 2", hfov: 130 },
+    "3":  { panorama: "/images/interior-downstairs/int-downstairs-03.jpeg", title: "Interior Downstairs – View 3", hfov: 130 },
+    "4":  { panorama: "/images/interior-downstairs/int-downstairs-04.jpeg", title: "Interior Downstairs – View 4", hfov: 130 },
+    "5":  { panorama: "/images/interior-downstairs/int-downstairs-05.jpeg", title: "Interior Downstairs – View 5", hfov: 130 },
+    "6":  { panorama: "/images/interior-downstairs/int-downstairs-06.jpeg", title: "Interior Downstairs – View 6", hfov: 130 },
+    "7":  { panorama: "/images/interior-downstairs/int-downstairs-07.jpeg", title: "Interior Downstairs – View 7", hfov: 130 },
+    "8":  { panorama: "/images/interior-downstairs/int-downstairs-08.jpeg", title: "Interior Downstairs – View 8", hfov: 130 },
+    "9":  { panorama: "/images/interior-downstairs/int-downstairs-09.jpeg", title: "Interior Downstairs – View 9", hfov: 130 },
+    "10": { panorama: "/images/interior-downstairs/int-downstairs-10.jpeg", title: "Interior Downstairs – View 10", hfov: 130 }
+  };
+
+  const viewer = pannellum.viewer('panorama', {
+    "default": {
+      "firstScene": "1",
+      "autoLoad": true,
+      "autoRotate": -2,
+      "hfov": 130,
+      "minHfov": 60,
+      "maxHfov": 150,
+      "pitch": -10,
+      "yaw": 0,
+      "showControls": true
+    },
+    "scenes": scenes
+  });
+
+  // Update title on load
+  viewer.on('load', function() {
+    const current = viewer.getScene();
+    document.getElementById('filename').textContent = scenes[current].title;
+    if (scenes[current].hfov) viewer.setHfov(scenes[current].hfov, true);
+  });
+
+  // Thumbnail clicks
+  document.querySelectorAll('.thumbnail-row img').forEach(thumb => {
+    thumb.addEventListener('click', function() {
+      const sceneId = this.dataset.scene;
+      viewer.loadScene(sceneId);
+      document.querySelectorAll('.thumbnail-row img').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Responsive resize
+  window.addEventListener('resize', () => viewer.resize());
+</script>
+
 </body>
 </html>
